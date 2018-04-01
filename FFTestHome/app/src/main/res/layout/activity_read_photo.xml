@@ -16,15 +16,14 @@
         <!--app:layout_constraintTop_toTopOf="parent" />-->
 
 
-
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/takePictureButton"
         android:id="@+id/previewImage"
+        android:layout_width="397dp"
+        android:layout_height="212dp"
+        android:layout_below="@id/takePictureButton"
+        android:layout_centerHorizontal="true"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:layout_centerHorizontal="true"/>
+        android:scaleType="fitCenter" />
 
     <Button
         android:id="@+id/takePictureButton"
@@ -37,9 +36,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/resultsText"
-        android:layout_below="@id/previewImage"/>
+        android:layout_width="375dp"
+        android:layout_height="189dp"
+        android:layout_below="@id/previewImage"
+        app:layout_constraintTop_toBottomOf="@+id/previewImage"
+        tools:layout_editor_absoluteX="5dp" />
+
 
 </android.support.constraint.ConstraintLayout>
