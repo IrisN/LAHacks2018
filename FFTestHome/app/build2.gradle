@@ -32,12 +32,12 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.github.kittinunf.fuel:fuel-android:1.5.0'
 
-    compile 'com.google.api-client:google-api-client-android:1.22.0'
-    compile 'com.google.apis:google-api-services-vision:v1-rev357-1.22.0'
-    compile 'com.google.code.findbugs:jsr305:2.0.1'
-    compile 'commons-io:commons-io:2.5'
-
-    compile 'com.google.cloud:google-cloud-vision:1.24.0'
+//    compile 'com.google.api-client:google-api-client-android:1.22.0'
+//    compile 'com.google.apis:google-api-services-vision:v1-rev357-1.22.0'
+//    compile 'com.google.code.findbugs:jsr305:2.0.1'
+//    compile 'commons-io:commons-io:2.5'
+//
+//    compile 'com.google.cloud:google-cloud-vision:1.24.0'
 
     //compile 'com.github.kittinunf.fuel:fuel-android:<latest-version>' //for Android
    // compile 'com.github.kittinunf.result:result:<latest-version>'

@@ -10,8 +10,21 @@ import android.widget.ImageView;
 import 	java.io.ByteArrayOutputStream;
 import 	android.util.Base64;
 
+import com.github.kittinunf.fuel.Fuel;
+import com.github.kittinunf.fuel.core.FuelError;
+//import com.github.kittinunf.fuel.core.Handler;
+//import com.github.kittinunf.fuel.core.Handler;
+import com.github.kittinunf.fuel.core.Response;
+import com.github.kittinunf.fuel.core.Handler;
+
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import kotlin.Pair;
+import com.github.kittinunf.fuel.core.Request;
+import android.widget.TextView;
+import android.net.http.HttpResponseCache;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -109,25 +122,50 @@ public class ReadPhoto extends AppCompatActivity {
             String body = postData.toString();
 
 
-//            Fuel.post(requestURL)
-//                    .header(
-//                            new Pair<String, Object>("content-length", body.length()),
-//                            new Pair<String, Object>("content-type", "application/json")
-//                    )
-//                    .body(body.getBytes())
-//                    .responseString(new Handler<String>() {
-//                        @Override
-//                        public void success(@NotNull Request request,
-//                                            @NotNull Response response,
-//                                            String data) {
-//                            // More code goes here
-//                        }
-//
-//                        @Override
-//                        public void failure(@NotNull Request request,
-//                                            @NotNull Response response,
-//                                            @NotNull FuelError fuelError) {}
-//                    });
+            Fuel.post(requestURL)
+                    .header(
+                            new Pair<String, Object>("content-length", body.length()),
+                            new Pair<String, Object>("content-type", "application/json")
+                    )
+                    .body(body.getBytes())
+                    .responseString(new Handler<String>() {
+                        @Override
+                        public void success(@NotNull Request request,
+                                            @NotNull Response response,
+                                            String data) {
+                            // Access the labelAnnotations arrays
+                            JSONArray labels = null;
+                            try {
+                                labels = new JSONObject(data)
+
+                                        .getJSONArray("responses")
+                                        .getJSONObject(0)
+                                        .getJSONArray("labelAnnotations");
+                            }
+                            catch(Exception e) {}
+
+                            String results = "";
+
+// Loop through the array and extract the
+// description key for each item
+                            for(int i=0;i<labels.length();i++) {
+                                try {
+                                    results = results +
+                                            labels.getJSONObject(i).getString("description") +
+                                            "\n";
+                                }
+                                catch (Exception e) {}
+                            }
+
+// Display the annotations inside the TextView
+                            ((TextView)findViewById(R.id.resultsText)).setText(results);
+                        }
+
+                        @Override
+                        public void failure(@NotNull Request request,
+                                            @NotNull Response response,
+                                            @NotNull FuelError fuelError) {}
+                    });
 
 //            HttpURLConnection con = null;
 //

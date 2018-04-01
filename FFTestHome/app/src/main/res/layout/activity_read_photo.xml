@@ -22,6 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/takePictureButton"
         android:id="@+id/previewImage"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:layout_centerHorizontal="true"/>
 
     <Button
